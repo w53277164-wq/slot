@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - GACOR969</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://files.catbox.moe/7segcz.jpg') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .bank-select {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .bank-option {
+            text-align: center;
+        }
+        
+        .bank-option input {
+            display: none;
+        }
+        
+        .bank-option label {
+            display: block;
+            padding: 10px;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .bank-option input:checked + label {
+            background: #e3f2fd;
+            border-color: #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #219653;
+        }
+        
+        .btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            border-left: 5px solid #27ae60;
+            max-width: 350px;
+        }
+        
+        .notification.error {
+            border-left-color: #e74c3c;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        
+        .github-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DAFTAR GACOR969</h1>
+            <p>Isi data untuk bergabung</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="input-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Nama sesuai KTP" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Minimal 6 karakter" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Nomor Rekening</label>
+                    <input type="text" id="noRekening" placeholder="Contoh: 1234567890" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Nama Rekening</label>
+                    <input type="text" id="namaRekening" placeholder="Nama di rekening" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>Bank / E-Wallet</label>
+                    <div class="bank-select">
+                        <div class="bank-option">
+                            <input type="radio" id="bri" name="bank" value="BRI" required>
+                            <label for="bri">BRI</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="bca" name="bank" value="BCA" required>
+                            <label for="bca">BCA</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="mandiri" name="bank" value="Mandiri" required>
+                            <label for="mandiri">Mandiri</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="bni" name="bank" value="BNI" required>
+                            <label for="bni">BNI</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="dana" name="bank" value="DANA" required>
+                            <label for="dana">DANA</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="ovo" name="bank" value="OVO" required>
+                            <label for="ovo">OVO</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="gopay" name="bank" value="GoPay" required>
+                            <label for="gopay">GoPay</label>
+                        </div>
+                        <div class="bank-option">
+                            <input type="radio" id="linkaja" name="bank" value="LinkAja" required>
+                            <label for="linkaja">LinkAja</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn">
+                    <span id="btnText">DAFTAR SEKARANG</span>
+                </button>
+                
+                <div class="github-info" id="githubInfo">
+                    <i class="fab fa-github"></i> Data akan disimpan ke GitHub
+                </div>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <p>Setelah daftar, akan langsung ke halaman utama</p>
+        </div>
+    </div>
+    
+    <!-- Notifikasi -->
+    <div class="notification" id="notification">
+        <div id="notificationText"></div>
+    </div>
+
+    <script>
+        // ===== KONFIGURASI GITHUB =====
+        const GITHUB_USERNAME = 'w53277164-wq';      // Ganti dengan username GitHubmu
+        const GITHUB_TOKEN = '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'; // Token GitHub
+        const GITHUB_REPO = 'slot-data';            // Nama repository
+        const GITHUB_FILE = 'user.json';           // Nama file
+        
+        // URL untuk GitHub API
+        const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+        
+        // URL untuk redirect setelah sukses
+        const REDIRECT_URL = "https://example.com"; // Ganti dengan URL tujuan
+        
+        // ===== FUNGSI SIMPAN KE GITHUB =====
+        async function saveToGitHub(formData) {
+            try {
+                console.log('Menyimpan ke GitHub...');
+                
+                // 1. Cek apakah file sudah ada di GitHub
+                let existingData = [];
+                let fileSha = null;
+                
+                try {
+                    const response = await fetch(GITHUB_API_URL, {
+                        headers: {
+                            'Authorization': `token ${GITHUB_TOKEN}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const fileData = await response.json();
+                        const content = atob(fileData.content); // Decode base64
+                        existingData = JSON.parse(content);
+                        fileSha = fileData.sha;
+                        console.log('File ditemukan, data ada:', existingData.length);
+                    }
+                } catch (error) {
+                    // File belum ada, kita buat array baru
+                    console.log('File belum ada, akan buat baru');
+                    existingData = [];
+                }
+                
+                // 2. Tambahkan data baru
+                existingData.push(formData);
+                
+                // 3. Konversi ke base64
+                const jsonString = JSON.stringify(existingData, null, 2);
+                const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+                
+                // 4. Siapkan payload
+                const payload = {
+                    message: `Tambah user baru: ${formData.nama}`,
+                    content: contentBase64,
+                    branch: 'main'
+                };
+                
+                // 5. Tambahkan SHA jika file sudah ada
+                if (fileSha) {
+                    payload.sha = fileSha;
+                }
+                
+                // 6. Upload ke GitHub
+                const uploadResponse = await fetch(GITHUB_API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (uploadResponse.ok) {
+                    console.log('✅ Berhasil simpan ke GitHub!');
+                    return true;
+                } else {
+                    const error = await uploadResponse.text();
+                    console.error('❌ Gagal upload ke GitHub:', error);
+                    return false;
+                }
+                
+            } catch (error) {
+                console.error('❌ Error GitHub:', error);
+                return false;
+            }
+        }
+        
+        // ===== FUNGSI SIMPAN KE LOCALSTORAGE =====
+        function saveToLocalStorage(data) {
+            try {
+                const users = JSON.parse(localStorage.getItem('gacor969_users') || '[]');
+                users.push(data);
+                localStorage.setItem('gacor969_users', JSON.stringify(users));
+                console.log('Data disimpan lokal:', data);
+                return true;
+            } catch (error) {
+                console.error('Gagal simpan lokal:', error);
+                return false;
+            }
+        }
+        
+        // ===== TAMPILKAN NOTIFIKASI =====
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            const text = document.getElementById('notificationText');
+            
+            text.textContent = message;
+            notification.className = 'notification' + (isError ? ' error' : '');
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ===== REDIRECT KE HALAMAN =====
+        function redirectToMainPage() {
+            showNotification('✓ Pendaftaran berhasil! Mengalihkan...');
+            
+            setTimeout(() => {
+                window.location.href = REDIRECT_URL;
+            }, 2000);
+        }
+        
+        // ===== HANDLE FORM SUBMIT =====
+        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Ambil data dari form
+            const formData = {
+                id: Date.now(),
+                nama: document.getElementById('nama').value.trim(),
+                password: document.getElementById('password').value,
+                noRekening: document.getElementById('noRekening').value.trim(),
+                namaRekening: document.getElementById('namaRekening').value.trim(),
+                bank: document.querySelector('input[name="bank"]:checked')?.value || '',
+                tanggal: new Date().toLocaleString('id-ID'),
+                status: 'active'
+            };
+            
+            // Validasi
+            if (!formData.nama || !formData.password || formData.password.length < 6 ||
+                !formData.noRekening || !formData.namaRekening || !formData.bank) {
+                showNotification('Harap isi semua kolom dengan benar!', true);
+                return;
+            }
+            
+            // Nonaktifkan tombol
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const githubInfo = document.getElementById('githubInfo');
+            
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span> Menyimpan ke GitHub...';
+            githubInfo.innerHTML = '<i class="fab fa-github"></i> Menyimpan data ke GitHub...';
+            
+            try {
+                // 1. Coba simpan ke GitHub
+                const savedToGitHub = await saveToGitHub(formData);
+                
+                if (savedToGitHub) {
+                    // 2. Simpan ke localStorage juga (backup)
+                    saveToLocalStorage(formData);
+                    
+                    // 3. Reset form
+                    document.getElementById('registrationForm').reset();
+                    
+                    // 4. Update info GitHub
+                    githubInfo.innerHTML = '<i class="fab fa-github"></i> ✅ Data berhasil disimpan ke GitHub';
+                    
+                    // 5. Redirect ke halaman utama
+                    redirectToMainPage();
+                    
+                } else {
+                    // Jika GitHub gagal, simpan ke lokal saja
+                    showNotification('⚠️ GitHub gagal, simpan ke lokal saja', true);
+                    saveToLocalStorage(formData);
+                    
+                    btn.disabled = false;
+                    btnText.innerHTML = 'DAFTAR SEKARANG';
+                    githubInfo.innerHTML = '<i class="fab fa-github"></i> ❌ GitHub gagal, data disimpan lokal';
+                }
+                
+            } catch (error) {
+                console.error('Error sistem:', error);
+                showNotification('❌ Error sistem, coba lagi!', true);
+                
+                btn.disabled = false;
+                btnText.innerHTML = 'DAFTAR SEKARANG';
+                githubInfo.innerHTML = '<i class="fab fa-github"></i> Error sistem';
+            }
+        });
+        
+        // ===== CEK KONEKSI GITHUB SAAT HALAMAN DIMUAT =====
+        window.addEventListener('load', async function() {
+            const githubInfo = document.getElementById('githubInfo');
+            
+            // Cek apakah repository ada
+            try {
+                const repoCheck = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}`);
+                
+                if (repoCheck.ok) {
+                    githubInfo.innerHTML = `<i class="fab fa-github"></i> ✅ GitHub siap: ${GITHUB_REPO}`;
+                } else {
+                    githubInfo.innerHTML = `<i class="fab fa-github"></i> ⚠️ Buat repository "${GITHUB_REPO}" dulu di GitHub`;
+                }
+            } catch (error) {
+                githubInfo.innerHTML = `<i class="fab fa-github"></i> ❌ Tidak bisa konek ke GitHub`;
+            }
+            
+            // Cek data lokal
+            const users = JSON.parse(localStorage.getItem('gacor969_users') || '[]');
+            console.log('Total user lokal:', users.length);
+        });
+        
+        // Tambahkan Font Awesome untuk icon GitHub
+        const fa = document.createElement('link');
+        fa.rel = 'stylesheet';
+        fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fa);
+    </script>
+</body>
+</html>
